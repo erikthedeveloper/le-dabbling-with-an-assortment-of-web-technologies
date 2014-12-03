@@ -1,28 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dogs</title>
-  <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script src="//code.jquery.com/jquery.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-</head>
-<body>
+<h1>Welcome to Dogs!</h1>
 
-<div class="container">
-<div class="jumbotron">
-  <h1>Welcome to Dogs!</h1>
-
-  <ul class="list-group">
-    {{range $dog := .}}
-      <li class="list-group-item">
-        {{$dog}}
-      </li>
-    {{end}}
-  </ul>
-  </div>
+<ul class="list-group">
+  {{range $dog := .}}
+  <li class="list-group-item">
+    {{$dog}}
+  </li>
+  {{end}}
+</ul>
 </div>
-
-</body>
-</html>

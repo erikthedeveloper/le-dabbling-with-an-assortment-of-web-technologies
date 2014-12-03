@@ -8,7 +8,9 @@ import (
 func main() {
 	// Setup
 	m := martini.Classic()
-	m.Use(render.Renderer())
+	m.Use(render.Renderer(render.Options{
+		Layout: "layout",
+	}))
 
 	/**
 	 * Routes
