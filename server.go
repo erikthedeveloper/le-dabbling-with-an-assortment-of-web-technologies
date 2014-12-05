@@ -5,6 +5,10 @@ import (
 	"github.com/martini-contrib/render"
 )
 
+const (
+	API_KEY = "a22bd87e65d902c94961fd393d621833"
+)
+
 func main() {
 	// Setup
 	m := martini.Classic()
@@ -26,9 +30,9 @@ func main() {
 	})
 
 	// people.show
-	m.Get("/people/:username", func(params martini.Params) string {
-		return "people.show " + params["username"]
-	})
+	// m.Get("/people/:username", func(params martini.Params, r render.Render) string {
+	// 	r.HTML(200, "people/show", params["username"])
+	// })
 
 	m.Get("/dogs", func(r render.Render) {
 		dogs := []string{"Fido", "Harold", "Fluffy", "FooFoo"}
