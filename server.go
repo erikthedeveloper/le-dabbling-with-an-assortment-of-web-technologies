@@ -37,6 +37,7 @@ type Movie struct {
 	Tagline     string  `json:"tagline"`
 	VoteAverage float64 `json:"vote_average"`
 	VoteCount   int     `json:"vote_count"`
+	Adult       bool    `json:"adult"`
 }
 
 func (m Movie) PosterSrc() string {
@@ -47,33 +48,12 @@ func (m Movie) BackdropSrc() string {
 	return ImageUrl(m.BackdropPath)
 }
 
-type MovieSearchResult struct {
-	Adult         bool    `json:"adult"`
-	BackdropPath  string  `json:"backdrop_path"`
-	Id            int     `json:"id"`
-	OriginalTitle string  `json:"original_title"`
-	ReleaseDate   string  `json:"release_date"`
-	PosterPath    string  `json:"poster_path"`
-	Popularity    float64 `json:"popularity"`
-	Title         string  `json:"title"`
-	VoteAverage   float64 `json:"vote_average"`
-	VoteCount     int     `json:"vote_count"`
-}
-
-func (m MovieSearchResult) PosterSrc() string {
-	return ImageUrl(m.PosterPath)
-}
-
-func (m MovieSearchResult) BackdropSrc() string {
-	return ImageUrl(m.BackdropPath)
-}
-
 type SearchResults struct {
-	Query        string              `json:"query"`
-	Results      []MovieSearchResult `json:"results"`
-	TotalResults int                 `json:"total_results"`
-	Page         int                 `json:"page"`
-	TotalPages   int                 `json:"total_pages"`
+	Query        string  `json:"query"`
+	Results      []Movie `json:"results"`
+	TotalResults int     `json:"total_results"`
+	Page         int     `json:"page"`
+	TotalPages   int     `json:"total_pages"`
 }
 
 /**
@@ -117,7 +97,7 @@ func GetMovie(movie_id string) Movie {
 	return movie
 }
 
-func SearchMovies(query string) *SearchResults {
+func SearchMoviesByTitle(query string) *SearchResults {
 	results := new(SearchResults)
 	results.Query = query
 	query = url.QueryEscape(query)
@@ -133,10 +113,9 @@ func SearchMovies(query string) *SearchResults {
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
 
-	// Parse JSON and Save to SearchResults
 	_ = json.Unmarshal(body, results)
 
-	fmt.Println(results)
+	fmt.Println(fmt.Sprintf("Search Results (%s): \n\n%s \n\n%s", query, body, results))
 	return results
 }
 
@@ -154,7 +133,7 @@ func main() {
 	})
 
 	m.Get("/search/(?P<query>[a-zA-Z]+)?", func(r render.Render, params martini.Params) {
-		results := SearchMovies(params["query"])
+		results := SearchMoviesByTitle(params["query"])
 		r.HTML(200, "movies/search_results", results)
 	})
 
