@@ -11,10 +11,19 @@ import (
 )
 
 const (
-	API_KEY       = "a22bd87e65d902c94961fd393d621833"
-	API_KEY_PARAM = "api_key=" + API_KEY
-	API_BASE_URL  = "http://api.themoviedb.org/3/"
+	API_KEY            = "a22bd87e65d902c94961fd393d621833"
+	API_KEY_PARAM      = "api_key=" + API_KEY
+	API_BASE_URL       = "http://api.themoviedb.org/3/"
+	API_BASE_URL_IMAGE = "http://image.tmdb.org/t/p/w500"
 )
+
+func EndpointUrl(endpoint string) string {
+	return API_BASE_URL + endpoint
+}
+
+func ImageUrl(path string) string {
+	return API_BASE_URL_IMAGE + path
+}
 
 type MovieSearchResult struct {
 	Adult         bool    `json:"adult"`
@@ -27,6 +36,14 @@ type MovieSearchResult struct {
 	Title         string  `json:"title"`
 	VoteAverage   float64 `json:"vote_average"`
 	VoteCount     int     `json:"vote_count"`
+}
+
+func (m MovieSearchResult) PosterSrc() string {
+	return ImageUrl(m.PosterPath)
+}
+
+func (m MovieSearchResult) BackdropSrc() string {
+	return ImageUrl(m.BackdropPath)
 }
 
 type SearchResults struct {
@@ -43,37 +60,27 @@ func PanicIfError(err error) {
 	}
 }
 
-func SearchMovies(title string) *SearchResults {
-	query := url.QueryEscape(title)
-	url := API_BASE_URL + "search/movie?" + API_KEY_PARAM + "&query=" + query
-	res, err := http.Get(url)
-	PanicIfError(err)
-	// Get Results From Response
+func SearchMovies(query string) *SearchResults {
+	results := new(SearchResults)
+	results.Query = query
+	query = url.QueryEscape(query)
+
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", EndpointUrl("search/movie"), nil)
+	values := req.URL.Query()
+	values.Add("api_key", API_KEY)
+	values.Add("query", query)
+	req.URL.RawQuery = values.Encode()
+
+	res, _ := client.Do(req)
 	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
-	PanicIfError(err)
+	body, _ := ioutil.ReadAll(res.Body)
 
 	// Parse JSON and Save to SearchResults
-	// Return Render SearchResults View
-	results := new(SearchResults)
-	err = json.Unmarshal(body, results)
-	PanicIfError(err)
+	_ = json.Unmarshal(body, results)
 
+	fmt.Println(results)
 	return results
-
-	//  MovieSearchResults := []MovieSearchResult{
-	//    ,MovieSearchResult{Id: 23 }
-	//    ,MovieSearchResult{Id: 25 }
-	//    ,MovieSearchResult{Id: 29 }
-	//  }
-
-	// return SearchResults{
-	//    Query: query
-	//    Results: MovieSearchResults
-	//    TotalResults: "sdf"
-	//    Page: "sdf"
-	//    TotalPages: "sdf"
-	//  }
 }
 
 func main() {
@@ -83,35 +90,19 @@ func main() {
 		Layout: "layout",
 	}))
 
-	/**
-	 * Routes
-	 */
-
-	m.Get("/", func() string {
-		return "Hello world!"
+	m.Get("/", func(r render.Render) {
+		r.HTML(200, "index", nil)
 	})
-
-	// people.index
-	m.Get("/people", func() string {
-		return "people.index"
-	})
-
-	// people.show
-	// m.Get("/people/:username", func(params martini.Params, r render.Render) string {
-	// 	r.HTML(200, "people/show", params["username"])
-	// })
 
 	m.Get("/dogs", func(r render.Render) {
 		dogs := []string{"Fido", "Harold", "Fluffy", "FooFoo"}
-		results := SearchMovies("matrix")
-		fmt.Println(results)
 		r.HTML(200, "dogs/index", dogs)
 	})
 
-	// m.Get("/movies", func(r render.Render) {
-	// 	url := API_BASE_URL + "search/movie?" + API_KEY_PARAM + "&query=matrix"
-	// 	resp, err := http.Get(url)
-	// })
+	m.Get("/search/:query", func(r render.Render, params martini.Params) {
+		results := SearchMovies(params["query"])
+		r.HTML(200, "movies/search_results", results)
+	})
 
 	m.Run()
 }

@@ -1,0 +1,22 @@
+<h1>Hello and Welcome!</h1>
+
+<div class="jumbotron">
+  <h5>Why not search some movies while you're here?</h5>
+  <form id="movie_search_form" class="form">
+  <div class="row">
+    <div class="col-sm-8">
+      <input class="form-control input-lg" type="text" name="query" id="movie_query" placeholder="Search Term">
+    </div>
+    <div class="col-sm-4">
+      <button class="btn btn-lg btn-block btn-primary">Search!</button>
+    </div>
+  </div>
+  </form>
+</div>
+
+<script>
+  $(document).on('submit', '#movie_search_form', function(event) {
+    event.preventDefault();
+    window.location = "/search/" + $("#movie_query").val();
+  })
+</script>
