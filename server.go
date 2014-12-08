@@ -25,6 +25,32 @@ func ImageUrl(path string) string {
 	return API_BASE_URL_IMAGE + path
 }
 
+type Movie struct {
+	Id            int    `json:"id"`
+	ImdbId        int    `json:"imdb_id"`
+	Title         string `json:"title"`
+	OriginalTitle string `json:"original_title"`
+	Overview      string `json:"overview"`
+	BackdropPath  string `json:"backdrop_path"`
+	PosterPath    string `json:"poster_path"`
+	// Genres        string  `json:"genres"` // [{"id": 28, "name": "Action"}, ...]
+	Homepage    string  `json:"homepage"`
+	ReleaseDate string  `json:"release_date"`
+	Revenue     int     `json:"revenue"`
+	Runtime     int     `json:"runtime"`
+	Tagline     string  `json:"tagline"`
+	VoteAverage float64 `json:"vote_average"`
+	VoteCount   int     `json:"vote_count"`
+}
+
+func (m Movie) PosterSrc() string {
+	return ImageUrl(m.PosterPath)
+}
+
+func (m Movie) BackdropSrc() string {
+	return ImageUrl(m.BackdropPath)
+}
+
 type MovieSearchResult struct {
 	Adult         bool    `json:"adult"`
 	BackdropPath  string  `json:"backdrop_path"`
@@ -54,10 +80,29 @@ type SearchResults struct {
 	TotalPages   int                 `json:"total_pages"`
 }
 
-func PanicIfError(err error) {
+func PanicIf(err error) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func GetMovie(movie_id string) Movie {
+	movie := Movie{}
+
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", EndpointUrl(fmt.Sprintf("movie/%s", movie_id)), nil)
+	values := req.URL.Query()
+	values.Add("api_key", API_KEY)
+	req.URL.RawQuery = values.Encode()
+
+	res, _ := client.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	_ = json.Unmarshal(body, &movie)
+
+	fmt.Println(fmt.Sprintf("Movie (%s): \n\n%s \n\n%s", movie_id, body, movie))
+
+	return movie
 }
 
 func SearchMovies(query string) *SearchResults {
@@ -99,9 +144,14 @@ func main() {
 		r.HTML(200, "dogs/index", dogs)
 	})
 
-	m.Get("/search/:query", func(r render.Render, params martini.Params) {
+	m.Get("/search/(?P<query>[a-zA-Z]+)?", func(r render.Render, params martini.Params) {
 		results := SearchMovies(params["query"])
 		r.HTML(200, "movies/search_results", results)
+	})
+
+	m.Get("/movies/:movie_id", func(r render.Render, params martini.Params) {
+		movie := GetMovie(params["movie_id"])
+		r.HTML(200, "movies/show", movie)
 	})
 
 	m.Run()
