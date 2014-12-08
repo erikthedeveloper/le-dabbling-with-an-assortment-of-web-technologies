@@ -1,0 +1,36 @@
+<h1>{{.Title}}</h1>
+<h5>{{.Tagline}}</h5>
+
+<div class="jumbotron">
+
+  <div class="row">
+    <div class="col-sm-9">
+      <img src="{{.PosterSrc}}" alt="" class="img-responsive">
+    </div>
+    <div class="col-sm-3">
+      <ul class="list-unstyled">
+        <li>
+          <strong>Website:</strong> <a href="{{.Homepage}}">{{.Title}}</a>
+        </li>
+        <li>
+          <strong>Revenue:</strong> {{.Revenue}}
+        </li>
+        <li>
+          <strong>Length:</strong> {{.Runtime}}
+        </li>
+        <li>
+          <strong>Rating:</strong> {{.VoteAverage}} <small>{{.VoteCount}} votes</small>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="text-center">Overview</h3>
+  <hr>
+  <p class="lead">
+    {{.Overview}}
+  </p>
+
+  <img src="{{.BackdropSrc}}" alt="" class="img-responsive center-block">
+
+</div>
