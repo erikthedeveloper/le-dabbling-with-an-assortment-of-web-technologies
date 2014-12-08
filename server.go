@@ -17,13 +17,9 @@ const (
 	API_BASE_URL_IMAGE = "http://image.tmdb.org/t/p/w500"
 )
 
-func EndpointUrl(endpoint string) string {
-	return API_BASE_URL + endpoint
-}
-
-func ImageUrl(path string) string {
-	return API_BASE_URL_IMAGE + path
-}
+/**
+ * Types, Structs, and ...
+ */
 
 type Movie struct {
 	Id            int    `json:"id"`
@@ -80,11 +76,27 @@ type SearchResults struct {
 	TotalPages   int                 `json:"total_pages"`
 }
 
+/**
+ * Howabout Some Funcs?!
+ */
+
+func EndpointUrl(endpoint string) string {
+	return API_BASE_URL + endpoint
+}
+
+func ImageUrl(path string) string {
+	return API_BASE_URL_IMAGE + path
+}
+
 func PanicIf(err error) {
 	if err != nil {
 		panic(err)
 	}
 }
+
+/**
+ * And some API HTTP funcs!
+ */
 
 func GetMovie(movie_id string) Movie {
 	movie := Movie{}
@@ -128,8 +140,10 @@ func SearchMovies(query string) *SearchResults {
 	return results
 }
 
+/**
+ * Do the magic!
+ */
 func main() {
-	// Setup
 	m := martini.Classic()
 	m.Use(render.Renderer(render.Options{
 		Layout: "layout",
@@ -137,11 +151,6 @@ func main() {
 
 	m.Get("/", func(r render.Render) {
 		r.HTML(200, "index", nil)
-	})
-
-	m.Get("/dogs", func(r render.Render) {
-		dogs := []string{"Fido", "Harold", "Fluffy", "FooFoo"}
-		r.HTML(200, "dogs/index", dogs)
 	})
 
 	m.Get("/search/(?P<query>[a-zA-Z]+)?", func(r render.Render, params martini.Params) {
