@@ -1,5 +1,5 @@
 <?php require_once 'bootstrap.php' ?>
-<?php require_once 'header.php' ?>
+<?= partial("header") ?>
 
 <div class="container">
   <h1>Homepage</h1>
@@ -9,4 +9,4 @@
   </div>
 </div>
 
-<?php require_once 'footer.php' ?>
+<?= partial("footer") ?>
