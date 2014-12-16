@@ -14,7 +14,7 @@ const (
 	API_KEY            = "a22bd87e65d902c94961fd393d621833"
 	API_KEY_PARAM      = "api_key=" + API_KEY
 	API_BASE_URL       = "http://api.themoviedb.org/3/"
-	API_BASE_URL_IMAGE = "http://image.tmdb.org/t/p/w500"
+	API_BASE_URL_IMAGE = "http://image.tmdb.org/t/p/w1000"
 )
 
 /**
@@ -132,7 +132,11 @@ func main() {
 		r.HTML(200, "index", nil)
 	})
 
-	m.Get("/search/(?P<query>[a-zA-Z]+)?", func(r render.Render, params martini.Params) {
+	m.Get("/search", func(r render.Render) {
+		r.HTML(200, "movies/search_results", nil)
+	})
+
+	m.Get("/search/:query", func(r render.Render, params martini.Params) {
 		results := SearchMoviesByTitle(params["query"])
 		r.HTML(200, "movies/search_results", results)
 	})

@@ -1,46 +1,48 @@
-<h1>Search Results <small>{{.Query}}</small></h1>
+<div class="container">
+  <h1>Search Results <small>{{.Query}}</small></h1>
 
-<div class="jumbotron">
-  <form id="movie_search_form" class="form">
-    <div class="row">
-      <div class="col-sm-8">
-        <input class="form-control input-lg" type="text" name="query" id="movie_query" placeholder="Search Term" value="{{.Query}}">
-      </div>
-      <div class="col-sm-4">
-        <button class="btn btn-lg btn-block btn-primary">Search!</button>
-      </div>
-    </div>
-  </form>
-  <hr>
-  <div class="list-group">
-    {{range .Results}}
-    <div class="list-group-item">
-      <h4>
-        <small class="pull-right">{{.ReleaseDate}}</small>
-        <a href="/movies/{{.Id}}">
-        {{.Title}}
-        </a>
-      </h4>
-
+  <div class="jumbotron">
+    <form id="movie_search_form" class="form">
       <div class="row">
-        <div class="col-sm-3">
-          <img src="{{.PosterSrc}}" alt="" class="img-responsive">
+        <div class="col-sm-8">
+          <input class="form-control input-lg" type="text" name="query" id="movie_query" placeholder="Search Term" value="{{.Query}}">
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-4">
+          <button class="btn btn-lg btn-block btn-primary">Search!</button>
+        </div>
+      </div>
+    </form>
+
+    <hr>
+
+    <div class="list-group">
+      {{range .Results}}
+      <div class="list-group-item">
+        <h4>
+          <small class="pull-right">{{.ReleaseDate}}</small>
+          <a href="/movies/{{.Id}}">
+            {{.Title}}
+          </a>
+        </h4>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <img src="{{.PosterSrc}}" alt="" class="img-responsive">
+          </div>
+          <div class="col-sm-9">
+          {{if .BackdropPath}}
           <img src="{{.BackdropSrc}}" alt="" class="img-responsive center-block">
+          {{else}}
+          <h5>Whoops. No image!!</h5>
+          {{end}}
+          </div>
+        </div>
+        <div class="sr-only" data-role="json-data">
+          {{.}}
         </div>
       </div>
-      <div class="sr-only" data-role="json-data">
-        {{.}}
-      </div>
+      {{end}}
     </div>
-    {{end}}
   </div>
 </div>
 </div>
-<script>
-  $(document).on('submit', '#movie_search_form', function(event) {
-    event.preventDefault();
-    window.location = "/search/" + $("#movie_query").val();
-  })
-</script>

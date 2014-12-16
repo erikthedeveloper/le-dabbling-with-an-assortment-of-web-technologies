@@ -1,3 +1,14 @@
 body {
 
 }
+
+.bg-movie-backdrop {
+  background: #000;
+  background-image: attr("data-img-src");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
