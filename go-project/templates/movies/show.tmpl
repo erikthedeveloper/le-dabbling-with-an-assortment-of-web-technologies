@@ -1,0 +1,41 @@
+<!-- Foo -->
+<div class="bg-movie-backdrop" style="background-image: url('http://image.tmdb.org/t/p/w1920{{.BackdropPath}}'); padding-top: 250px;">
+  <div class="container">
+
+    <div class="jumbotron" style="opacity: 0.9;">
+      <h2>{{.Title}}</h2>
+      <h5>{{.Tagline}}</h5>
+
+      <div class="row">
+        <div class="col-sm-7">
+          <img src="{{.PosterSrc}}" alt="" class="img-responsive">
+        </div>
+        <div class="col-sm-5 lead">
+          <ul class="list-unstyled">
+            <li>
+              <strong>Website:</strong> <a href="{{.Homepage}}">{{.Title}}</a>
+            </li>
+            <li>
+              <strong>Revenue:</strong> {{.Revenue}}
+            </li>
+            <li>
+              <strong>Length:</strong> {{.Runtime}}
+            </li>
+            <li>
+              <strong>Rating:</strong> {{.VoteAverage}} <small>{{.VoteCount}} votes</small>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="text-center">Overview</h3>
+      <hr>
+      <p class="lead">
+        {{.Overview}}
+      </p>
+
+      <img src="{{.BackdropSrc}}" alt="" class="img-responsive center-block">
+
+    </div>
+  </div>
+</div>
