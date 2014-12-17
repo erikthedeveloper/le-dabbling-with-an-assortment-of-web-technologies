@@ -3,35 +3,35 @@ namespace App;
 
 use PDO;
 
-class MyPdo {
+class MyPdo
+{
 
-  /**
-   * @var PDO
-   */
-  public $pdo;
+    /**
+     * @var PDO
+     */
+    public $pdo;
 
-  public function __construct($host, $user, $password, $database, $port = 3306)
-  {
-    $dsn = "mysql:host={$host};dbname={$database};port={$port}";
-    $pdo = new PDO($dsn, $user, $password);
-    $this->pdo = $pdo;
-  }
+    public function __construct($host, $user, $password, $database, $port = 3306)
+    {
+        $dsn       = "mysql:host={$host};dbname={$database};port={$port}";
+        $pdo       = new PDO($dsn, $user, $password);
+        $this->pdo = $pdo;
+    }
 
-  public function executeStatement($sql, array $data = [])
-  {
-    $statement = $this->pdo->prepare($sql);
-    $success = $statement->execute($data);
-    return $success;
-  }
+    public function executeStatement($sql, array $data = [])
+    {
+        $statement = $this->pdo->prepare($sql);
+        $success   = $statement->execute($data);
+        return $success;
+    }
 
-  public function retrieveStatement($sql, array $data = [])
-  {
-    $statement = $this->pdo->prepare($sql);
-    $statement->setFetchMode(PDO::FETCH_OBJ);
-    $statement->execute($data);
-    return $statement;
-  }
-
+    public function retrieveStatement($sql, array $data = [])
+    {
+        $statement = $this->pdo->prepare($sql);
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+        $statement->execute($data);
+        return $statement;
+    }
 }
 
 /* Example usages...
