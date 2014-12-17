@@ -14,3 +14,15 @@ function partial($name, $data = [])
     ob_clean();
     return $output;
 }
+
+function array_get(&$the_array, $key, $default = null)
+{
+    return (isset($the_array[$key])) ? $the_array[$key] : $default;
+}
+
+function redirect_user($destination)
+{
+    header("Location: {$destination}");
+    exit;
+}
+
