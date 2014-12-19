@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  complete: false
+  created_by: 1
+  assigned_to: 1
+
+two:
+  title: MyString
+  description: MyText
+  complete: false
+  created_by: 1
+  assigned_to: 1

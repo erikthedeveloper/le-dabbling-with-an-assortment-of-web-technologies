@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="large-2 columns small-3">
+    <img src="http://lorempixel.com/80/80/people/<%= rand 9 %>"/>
+  </div>
+  <div class="large-10 columns">
+    <h4>
+      <%= check_box_tag "task_#{task.id}", nil, task.is_complete, {disabled: true} %>
+      <%= link_to task.title, task%>
+      <div class="right">
+        <% if task.assigned_to_user %>
+            <small>assigned to <%= link_to(task.assigned_to_user.first_name, task.assigned_to_user) %></small>
+        <% end %>
+      </div>
+    </h4>
+
+
+    <p><%= task.get_description %></p>
+
+    <%= image_tag task.image %>
+
+    <div class="right">
+      <small>created by <%= link_to(task.created_by_user.first_name, task.created_by_user) %> - <%= task.get_created_at %></small>
+    </div>
+    <ul class="inline-list">
+      <li><%= link_to "Edit", edit_task_path(task.id) %></li>
+      <li><a href="" onclick="alert('not so fast! Work in progress')">Comment</a></li>
+      <li><%= link_to "Archive", task, method: :delete, data: {confirm: "Are you sure?"} %></li>
+    </ul>
+
+<%
+=begin
+    <h6>2 Comments
+      <small>WIP</small>
+    </h6>
+
+    <div class="row">
+      <div class="large-2 columns small-3">
+        <img src="http://placehold.it/50x50&text=[img]"/>
+      </div>
+      <div class="large-10 columns">
+        <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
+          reprehenderit</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-2 columns small-3">
+        <img src="http://placehold.it/50x50&text=[img]"/>
+      </div>
+      <div class="large-10 columns">
+        <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in
+          reprehenderit</p>
+      </div>
+    </div>
+=end %>
+  </div>
+</div>

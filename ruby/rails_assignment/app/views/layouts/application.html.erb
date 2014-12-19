@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title><%= content_for?(:title) ? yield(:title) : "TODO w/ Rails and Foundation" %></title>
+
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<%= render 'layouts/header_nav' %>
+
+<%= render 'layouts/flash_message' %>
+
+<div class="row">
+  <div class="column small-12">
+    <%= yield %>
+  </div>
+</div>
+
+<%= javascript_include_tag "application" %>
+
+<%= render 'layouts/footer' %>
+</body>
+</html>

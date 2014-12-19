@@ -1,0 +1,58 @@
+<br/>
+<div class="row">
+  <div class="large-12 columns">
+    <div class="panel">
+      <h1><%= @user.first_name %> <%= @user.last_name %>'s Tasks</h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="large-3 columns ">
+    <div class="panel">
+
+      <div class="section-container vertical-nav" data-section data-options="deep_linking: false; one_up: true">
+        <h4>Great Sidebar</h4>
+        <ul style="list-style: none;">
+          <li>
+            <%= link_to "Add Task", new_task_path %>
+          </li>
+          <li>
+            <%= link_to "All Users/Tasks", users_path %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container vertical-nav" data-section data-options="deep_linking: false; one_up: true">
+        <h4>All Users</h4>
+        <% @users.each do |user| %>
+            <li>
+              <%= link_to user.first_name, user %>
+            </li>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="large-9 columns">
+
+    <div class="row">
+      <div class="column small-12">
+        <%= link_to "Add Task (#{@user.first_name})", new_task_path, {class: "button right"} %>
+        <h3>
+            <%= pluralize @user.tasks.length, "Task" %>
+        </h3>
+      </div>
+    </div>
+
+    <% @user.tasks.each do |task| %>
+        <%= render partial: 'tasks/task', locals: {task: task}%>
+        <hr/>
+    <% end %>
+
+  </div>
+
+</div>

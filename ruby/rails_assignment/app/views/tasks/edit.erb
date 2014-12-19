@@ -1,0 +1,7 @@
+<h2>Edit Task</h2>
+
+<%= render partial: 'form' %>
+
+<div class="right">
+  <%= link_to "Archive Task", @task, method: :delete, data: {confirm: "Are you sure?"} %>
+</div>
