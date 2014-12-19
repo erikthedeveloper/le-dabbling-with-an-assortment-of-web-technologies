@@ -1,0 +1,445 @@
+commit 44b5f942b55d0d1c175468b7e0c7acd4b798c7e9
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 10:37:37 2014 -0700
+
+    Adds `@users = User.all` to `tasks#create` (QUICKFIX)
+
+ app/controllers/tasks_controller.rb | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 9faf0d5cfcb290062b29704757c48f1089823f2d
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 07:43:24 2014 -0700
+
+    Now can complete tasks!
+
+ app/controllers/tasks_controller.rb | 8 +++++++-
+ app/views/tasks/_form.html.erb      | 3 +++
+ app/views/tasks/_task.erb           | 2 +-
+ config/routes.rb                    | 4 +++-
+ 4 files changed, 14 insertions(+), 3 deletions(-)
+
+commit f309bcce8c03350fef5b0dc856b2ac251c126aa6
+Merge: fb5473c c0cb441
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 07:28:07 2014 -0700
+
+    Merge branch 'refactor'
+
+commit c0cb441a7eb97ba57c6d76e81673851f39fce351
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 07:26:41 2014 -0700
+
+    Refactors from nested routes to non-nested for Tasks... much more!
+
+ app/controllers/tasks_controller.rb    | 21 +++++++++++++--------
+ app/views/layouts/_header_nav.html.erb |  6 +++---
+ app/views/tasks/_form.html.erb         | 12 +++++-------
+ app/views/tasks/_task.erb              |  5 +++--
+ app/views/tasks/edit.erb               |  8 ++++++--
+ app/views/tasks/new.erb                |  2 +-
+ app/views/users/index.erb              |  3 +++
+ app/views/users/show.erb               |  4 ++--
+ config/routes.rb                       |  5 ++---
+ 9 files changed, 38 insertions(+), 28 deletions(-)
+
+commit 2a67a9f442ddecddff6f96e867dc41376d36507e
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 06:58:09 2014 -0700
+
+    Extracts partial for flash_message. Misc. Formatting
+
+ app/controllers/users_controller.rb       | 13 +++++----
+ app/views/layouts/_flash_message.html.erb | 14 ++++++++++
+ app/views/layouts/application.html.erb    | 44 ++++++++++++++-----------------
+ 3 files changed, 40 insertions(+), 31 deletions(-)
+
+commit 70d7d2bd23a4d41f8f11322fdcf4c2edd444740d
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 06:42:36 2014 -0700
+
+    Models - Removes TODOs/formatting
+
+ app/models/task.rb | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit fb5473cbfde7dc480e4033a0904a16760c198d7b
+Merge: 9cc91a2 1dbf32c
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 01:47:17 2014 -0700
+
+    Merge branch 'feature/carrier_wave'
+
+commit 1dbf32c38522edb658a32e6443f3bdbbfc435a0c
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 01:46:54 2014 -0700
+
+    Orders tasks... lorem pixel...
+
+ app/controllers/users_controller.rb | 4 ++--
+ app/views/tasks/_task.erb           | 4 ++--
+ app/views/users/show.erb            | 9 +++++++++
+ 3 files changed, 13 insertions(+), 4 deletions(-)
+
+commit 05bedbc3c24882dcc1dc7a034d3bfc594b426af4
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 01:36:08 2014 -0700
+
+    Updates model, form, controller, and views for image upload. Success!?
+
+ app/controllers/tasks_controller.rb |  2 +-
+ app/models/task.rb                  |  2 ++
+ app/uploaders/image_uploader.rb     | 51 +++++++++++++++++++++++++++++++++++++
+ app/views/tasks/_form.html.erb      |  8 ++++++
+ app/views/tasks/_task.erb           |  3 +++
+ 5 files changed, 65 insertions(+), 1 deletion(-)
+
+commit 9f821d5909c286feb1a3081820be586c46d03773
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 01:35:21 2014 -0700
+
+    Adds add_image_to_tasks migration. Migrates!
+
+ db/migrate/20141105082307_add_image_to_tasks.rb | 5 +++++
+ db/schema.rb                                    | 3 ++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit bb044c5b40a3e891f79975f17e998a9c5df93093
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 01:35:00 2014 -0700
+
+    Adds CarrierWave gem and updates gitignore
+
+ .gitignore   | 2 ++
+ Gemfile      | 1 +
+ Gemfile.lock | 6 ++++++
+ 3 files changed, 9 insertions(+)
+
+commit 9cc91a2d1ebc058e6792549b4dc224c989f34c56
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 01:15:25 2014 -0700
+
+    Updates layouts... show name in navbar. Show alert/notice messages...
+
+ app/views/layouts/_header_nav.html.erb | 4 ++--
+ app/views/layouts/application.html.erb | 7 +++++++
+ 2 files changed, 9 insertions(+), 2 deletions(-)
+
+commit b01b91b970ca5388025acd519e5c2eed687b087a
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 01:15:02 2014 -0700
+
+    Updates seeds.rb to reflect new relationship mumbo jumbo
+
+ db/seeds.rb | 32 ++++++++++++++++++++++----------
+ 1 file changed, 22 insertions(+), 10 deletions(-)
+
+commit adf0b8429696f38794eff6c3f5c45c58735e86cd
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 01:13:45 2014 -0700
+
+    Authenticates Tasks Routes... Update/Edit/Whatever
+
+ app/controllers/tasks_controller.rb | 22 ++++++++++++++++++----
+ app/models/task.rb                  |  2 +-
+ app/views/tasks/_form.html.erb      | 25 +++++++++++++++++++++++++
+ app/views/tasks/_task.erb           | 13 +++++++++----
+ app/views/tasks/edit.erb            |  3 +++
+ app/views/tasks/new.erb             | 25 ++-----------------------
+ 6 files changed, 58 insertions(+), 32 deletions(-)
+
+commit e049c8f0365c1aacd44df9225c1655f0d4754df1
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 01:12:44 2014 -0700
+
+    Updates User -> Task relationships
+
+    has_many :tasks, foreign_key: 'assigned_to'
+    has_many :tasks_created, foreign_key: 'created_by', class_name: 'Task'
+
+ app/models/user.rb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit fcd67de59a39eb477cf9124e827eb2789d7c5a1c
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 00:21:36 2014 -0700
+
+    Adds Task validations and "render new on create fail" w/ show errorw WIP
+
+ app/controllers/tasks_controller.rb | 11 ++++++++---
+ app/models/task.rb                  | 13 ++++++++++---
+ app/views/tasks/new.erb             |  9 ++++++++-
+ 3 files changed, 26 insertions(+), 7 deletions(-)
+
+commit 070e6e3b1f4ada55a7980cb20d35ecdc5e81bc14
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 5 00:19:15 2014 -0700
+
+    Adds User Validations and User.display_name - Redirects 'root' -> users_path
+
+    User
+        validates_presence_of :first_name, :last_name, :email
+        validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'not a valid email format'
+
+ app/controllers/pages_controller.rb | 2 +-
+ app/models/user.rb                  | 7 ++++++-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+commit ebe62f5be3311566569f2173e9cddf411003571a
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Tue Nov 4 23:20:38 2014 -0700
+
+    Extracts duplicate view content into tasks/_task.erb
+
+ app/views/tasks/_task.erb | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ app/views/tasks/show.erb  | 43 +------------------------------------------
+ app/views/users/index.erb | 45 +--------------------------------------------
+ app/views/users/show.erb  | 47 +----------------------------------------------
+ 4 files changed, 50 insertions(+), 132 deletions(-)
+
+commit d152f5f54b70d307c9997f57ef9b56ffcffe3205
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 3 12:58:58 2014 -0700
+
+    Adds/Updates views/ctrl/routes for nested user > tasks views w/ create
+
+ app/controllers/tasks_controller.rb | 20 +++++++-
+ app/views/tasks/new.erb             |  6 ++-
+ app/views/tasks/show.erb            | 43 +++++++++++++++++
+ app/views/users/index.erb           |  7 +--
+ app/views/users/show.erb            | 92 ++++++++++++++++++++-----------------
+ config/routes.rb                    |  5 +-
+ 6 files changed, 123 insertions(+), 50 deletions(-)
+
+commit a10816e38dd97143a993843f551b766a32c54ca0
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 3 09:19:33 2014 -0700
+
+    Updates Gemfile to use :development and :production for sqlite/heroku
+
+ Gemfile      | 13 +++++++++++--
+ Gemfile.lock | 27 +++++++++++++++++++++++++++
+ 2 files changed, 38 insertions(+), 2 deletions(-)
+
+commit 1cb76ca2b20c826743eb0ff2ae2f1f4f64597da5
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 3 09:08:06 2014 -0700
+
+    Adds method/routes tasks#new, link_to, and view starter file
+
+ app/controllers/tasks_controller.rb |  3 +++
+ app/views/tasks/new.erb             | 13 +++++++++++++
+ app/views/users/show.erb            |  2 +-
+ 3 files changed, 17 insertions(+), 1 deletion(-)
+
+commit d7101fdf1dc20ff7eab489c4eb4bb4c2c5ce0c0e
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 3 08:53:50 2014 -0700
+
+    Updates seeds.rb | Now adds 2 users w/ tasks
+
+ db/seeds.rb | 32 +++++++++++++++++++++++++++++---
+ 1 file changed, 29 insertions(+), 3 deletions(-)
+
+commit 262f4705af5b607f1e133af1318ee237d4c76d65
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 3 08:52:50 2014 -0700
+
+    Adds/Updates user views. Passes data in from UsersCtrl
+
+    - views/users/{index, show}
+
+ app/controllers/users_controller.rb    | 19 +++++++
+ app/views/layouts/_header_nav.html.erb |  6 ++-
+ app/views/users/index.erb              | 92 +++++++++++++++++++++++++++++++++-
+ app/views/users/show.erb               | 88 ++++++++++++++++++++++++++++++++
+ 4 files changed, 202 insertions(+), 3 deletions(-)
+
+commit f6278350734b50ccf4fcff9580ed419acb656252
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 3 06:42:46 2014 -0700
+
+    Adds UsersController < Devise::RegistrationsController + route config
+
+    Also boiler plate view for users#index
+
+ app/controllers/users_controller.rb | 7 +++++++
+ app/views/users/index.erb           | 1 +
+ config/routes.rb                    | 6 ++++--
+ 3 files changed, 12 insertions(+), 2 deletions(-)
+
+commit 3006e5f5154cae5e5b7b1a7fbf1cc449bb65cd54
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 3 06:41:20 2014 -0700
+
+    app/models - Adds notes/TODOs
+
+ app/models/task.rb | 8 ++++++++
+ app/models/user.rb | 2 ++
+ 2 files changed, 10 insertions(+)
+
+commit cc8f896d0c0922c60769c6dd3034611defb66608
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 23:06:49 2014 -0700
+
+    Adds User <-> Task (created_by_user) relationship
+
+    - Task.belongs_to :created_by_user, class_name: 'User', foreign_key: 'created_by'
+    - User.has_many :tasks, foreign_key: 'created_by'
+    - Updates seeds.rb
+
+ app/models/task.rb | 3 +++
+ app/models/user.rb | 2 ++
+ db/seeds.rb        | 6 +++---
+ 3 files changed, 8 insertions(+), 3 deletions(-)
+
+commit a1377e2800cfa2855740496cbca653fc4f7fd7ec
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 22:53:59 2014 -0700
+
+    Migrates tasks. Adds basic user to seed.rb - Adds TasksCtrl
+
+ app/controllers/tasks_controller.rb |  6 ++++++
+ app/views/tasks/index.erb           |  1 +
+ db/schema.rb                        | 12 +++++++++++-
+ db/seeds.rb                         |  5 +++++
+ 4 files changed, 23 insertions(+), 1 deletion(-)
+
+commit 40f1a0da3227c0f61232efcca58d57d6aa61659e
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 22:44:18 2014 -0700
+
+    Runs `rails g resource task` Modifies migration
+
+    Task Fields
+    - :title, null: false
+    - :description, null: false, default: ""
+    - :is_complete, null: false, default: false
+    - :created_by
+    - :assigned_to
+
+ app/assets/javascripts/tasks.js.coffee    |  3 +++
+ app/assets/stylesheets/tasks.css.scss     |  3 +++
+ app/controllers/tasks_controller.rb       |  2 ++
+ app/helpers/tasks_helper.rb               |  2 ++
+ app/models/task.rb                        |  2 ++
+ config/routes.rb                          |  2 ++
+ db/migrate/20141103053835_create_tasks.rb | 13 +++++++++++++
+ test/controllers/tasks_controller_test.rb |  7 +++++++
+ test/fixtures/tasks.yml                   | 15 +++++++++++++++
+ test/helpers/tasks_helper_test.rb         |  4 ++++
+ test/models/task_test.rb                  |  7 +++++++
+ 11 files changed, 60 insertions(+)
+
+commit f5fae2734515a31375dc7395ab07f9343ff653a3
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 22:33:46 2014 -0700
+
+    Logging in/out! Updates regristrations/new.erb and permitted strong params for user
+
+    - configure_permitted_parameters
+      :email, :first_name, :last_name, :password, :password_confirmation
+
+ app/controllers/application_controller.rb   | 11 +++++++
+ app/views/devise/registrations/new.html.erb | 47 +++++++++++++++++++++++------
+ 2 files changed, 48 insertions(+), 10 deletions(-)
+
+commit 818b218c9127c4dfa2f8b78ccd7b61c71cc6001d
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 22:24:25 2014 -0700
+
+    Runs `rails g devise:views` *Note: `rails g devise:views user` didn't work!
+
+ app/views/devise/confirmations/new.html.erb        | 12 +++++++++
+ .../mailer/confirmation_instructions.html.erb      |  5 ++++
+ .../mailer/reset_password_instructions.html.erb    |  8 ++++++
+ .../devise/mailer/unlock_instructions.html.erb     |  7 ++++++
+ app/views/devise/passwords/edit.html.erb           | 16 ++++++++++++
+ app/views/devise/passwords/new.html.erb            | 12 +++++++++
+ app/views/devise/registrations/edit.html.erb       | 29 ++++++++++++++++++++++
+ app/views/devise/registrations/new.html.erb        | 18 ++++++++++++++
+ app/views/devise/sessions/new.html.erb             | 17 +++++++++++++
+ app/views/devise/shared/_links.html.erb            | 25 +++++++++++++++++++
+ app/views/devise/unlocks/new.html.erb              | 12 +++++++++
+ 11 files changed, 161 insertions(+)
+
+commit 6b04daea5dbdb1057cde8ebb2edf93066fce33e9
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 22:13:02 2014 -0700
+
+    Adds conditional sign up/in links and welcome message (header/footer)
+
+ app/views/layouts/_footer.html.erb     |  8 +++++++-
+ app/views/layouts/_header_nav.html.erb | 15 ++++++++++++---
+ 2 files changed, 19 insertions(+), 4 deletions(-)
+
+commit d1863e89b67ad8689147021c667c017b7761cdaa
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 22:00:49 2014 -0700
+
+    Runs `rails g devise user` - Adds first_name, last_name to migration
+
+ app/models/user.rb                               |  6 ++++
+ config/routes.rb                                 |  1 +
+ db/migrate/20141103045854_devise_create_users.rb | 44 ++++++++++++++++++++++++
+ db/schema.rb                                     | 36 +++++++++++++++++++
+ test/fixtures/users.yml                          | 11 ++++++
+ test/models/user_test.rb                         |  7 ++++
+ 6 files changed, 105 insertions(+)
+
+commit a90e45fd37699cfac93d325dbb439df1c2659f32
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 21:58:07 2014 -0700
+
+    Devise - installs gem and 'rails g devise:install'
+
+ Gemfile                       |   2 +
+ Gemfile.lock                  |  14 +++
+ config/initializers/devise.rb | 259 ++++++++++++++++++++++++++++++++++++++++++
+ config/locales/devise.en.yml  |  60 ++++++++++
+ 4 files changed, 335 insertions(+)
+
+commit fac77bd20b8a33da9408b3a5e84c4015736cae6c
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 21:55:55 2014 -0700
+
+    Adds _header/_footer and adds to application.html.erb
+
+ app/views/layouts/_footer.html.erb     |  5 +++++
+ app/views/layouts/_header_nav.html.erb | 37 ++++++++++++++++++++++++++++++++++
+ app/views/layouts/application.html.erb | 10 ++++++++-
+ 3 files changed, 51 insertions(+), 1 deletion(-)
+
+commit 9e33448f9861f672aba784b652d54c16f47297e8
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 21:49:22 2014 -0700
+
+    Adds Gem foundation-rails. Runs foundation generator/install.
+
+    - https://github.com/zurb/foundation-rails
+    - http://foundation.zurb.com/docs/applications.html
+
+ Gemfile                                            |    2 +
+ Gemfile.lock                                       |    4 +
+ app/assets/javascripts/application.js              |    3 +
+ app/assets/stylesheets/application.css             |    2 +
+ .../stylesheets/foundation_and_overrides.scss      | 1443 ++++++++++++++++++++
+ app/views/layouts/application.html.erb             |   31 +-
+ 6 files changed, 1472 insertions(+), 13 deletions(-)
+
+commit 612af965ea62a0c1ae73a6028ddac6c80c43199d
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 21:47:29 2014 -0700
+
+    Adds Controller/View stub for route `root 'pages#home'`
+
+ app/controllers/pages_controller.rb |  7 +++++
+ app/views/pages/home.erb            |  1 +
+ config/routes.rb                    | 55 +------------------------------------
+ 3 files changed, 9 insertions(+), 54 deletions(-)
+
+commit 76c4225a051a31fe25036d9c0e5fbe9c5eb677ef
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sun Nov 2 21:39:24 2014 -0700
+
+    Initial commit - 'rails new AssignmentRails'
