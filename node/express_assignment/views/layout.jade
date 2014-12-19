@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/dist/app.css')
+  body
+
+    nav.navbar.navbar-default
+      .container
+        .navbar-header
+          a.navbar-brand(href="/").
+            SomeGreatApp
+
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li: a(href='/users').
+              Users
+            li: a(href='/users/new').
+              Users New
+
+    .container
+      block content
+
+    script(src="/dist/jquery.js" type="text/javascript")
+    script(src="/dist/bootstrap.js" type="text/javascript")
+    script(src="/dist/main.js" type="text/javascript")
