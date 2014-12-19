@@ -22,6 +22,9 @@
         <li>
             <a href="/hobbits/new.php">New Hobbit</a>
         </li>
+        <li>
+            <a href="/uploads/index.php">Uploads</a>
+        </li>
     </ul>
 
 </nav>
