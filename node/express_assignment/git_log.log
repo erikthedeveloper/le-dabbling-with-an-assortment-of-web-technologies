@@ -1,0 +1,266 @@
+commit f9b995e46350b216f3128d8881107cf532c9d2c3
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 26 12:22:59 2014 -0700
+
+    Converts mongoose.connect() to use process.env instead config_private
+
+ app.js | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 12b98c7aef440ce8fb6253623adea67208c9f601
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 26 11:34:18 2014 -0700
+
+    Prepares for Heroku. Adds gulp.build & Procfile. Updates package.json.
+
+ Procfile     |  1 +
+ gulpfile.js  |  7 ++++++-
+ package.json | 34 ++++++++++++++++++----------------
+ 3 files changed, 25 insertions(+), 17 deletions(-)
+
+commit 9b1c42329f3f4d23b9375bd3e6cb0db719663743
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 26 11:31:12 2014 -0700
+
+    Fixes HttpSpoofer. Updates views/forms for edit/new/destroy.
+    
+    - Was accessing $('a').href. Needed $('a').attr('href').
+
+ assets/scripts/main.js | 24 ++++++++++++------------
+ routes/users.js        |  1 -
+ views/users/edit.jade  |  6 +++---
+ views/users/index.jade |  8 ++++----
+ views/users/show.jade  | 10 +++++-----
+ 5 files changed, 24 insertions(+), 25 deletions(-)
+
+commit 6875b738ade458e602ebb2b6a5d7e84753a7b936
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 26 11:13:53 2014 -0700
+
+    Gulp - Implements livereload/watch to auto reload Express server :)
+
+ gulpfile.js  | 25 +++++++++++++++----------
+ package.json |  1 +
+ 2 files changed, 16 insertions(+), 10 deletions(-)
+
+commit 5d2c34863d0ce90cbf289b3d1349e891e522d7d2
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sat Nov 22 16:53:01 2014 -0700
+
+    Formatting - Uses 2 space indent. 99.99% Whitespace only. Read link!!!
+    
+    See Here: https://github.com/airbnb/javascript
+    
+    Amazingly comprehensive javascript styleguide (and much more)
+
+ EXAMPLE.config_private.js |   6 +-
+ app.js                    |  34 +++++------
+ assets/scripts/main.js    | 146 ++++++++++++++++++++++++----------------------
+ gulpfile.js               |  74 +++++++++++------------
+ models.js                 |   6 +-
+ routes/users.js           |  52 ++++++++---------
+ views/index.jade          |   2 +-
+ views/users/edit.jade     |  60 +++++++++----------
+ views/users/index.jade    |  48 +++++++--------
+ views/users/new.jade      |  58 +++++++++---------
+ views/users/show.jade     |  56 +++++++++---------
+ 11 files changed, 273 insertions(+), 269 deletions(-)
+
+commit f7666a40dea4c6d5088c75a130c9bfa35ecc6306
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sat Nov 22 16:23:28 2014 -0700
+
+    Adds README.md w/ semi-helpful instructions/description...
+
+ README.md | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+commit d5606284c45716d915076c05db04663f1655611a
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sat Nov 22 16:08:24 2014 -0700
+
+    Views - Updates all views. Implements a[http-method=DELETE] for users
+    
+    - Refactors layout/Bootstrap usage.
+    - Refactors Jade usage.
+    - Uncomments and Disables "not implemented" fields.
+
+ views/index.jade       |  5 +++--
+ views/users/edit.jade  | 28 ++++++++++++++--------------
+ views/users/index.jade | 21 +++++++++++++++++++--
+ views/users/new.jade   |  6 +++---
+ views/users/show.jade  | 15 +++++++++++++--
+ 5 files changed, 52 insertions(+), 23 deletions(-)
+
+commit 5a68c1d23a19077723e4f6bc5f4e7b8dddaa9f4b
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sat Nov 22 16:06:55 2014 -0700
+
+    Routes - index 301-> users.index. Implements users.destroy
+
+ routes/index.js | 3 ++-
+ routes/users.js | 9 +++++++--
+ 2 files changed, 9 insertions(+), 3 deletions(-)
+
+commit 194ce42afe5829929d73fd56aa057ad65d1f1c7a
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Sat Nov 22 16:00:38 2014 -0700
+
+    Adds HttpSpoofer. Updates gulpfile. Adds fonts. Builds/Watches!
+    
+    - Now "Destroy" links working/spooked via HttpSpoofer
+    - Gulpfile adds +js_{vendor,main} tasks
+    - Adds/Tracks fonts for glyphicons.
+
+ assets/scripts/main.js                             |  77 +++++++
+ assets/styles/_bootstrap.scss                      |  50 -----
+ assets/styles/_bootstrap_imports.scss              |  50 +++++
+ assets/styles/_my_variables.scss                   |   0
+ assets/styles/app.scss                             |   4 +-
+ gulpfile.js                                        |  22 +-
+ .../bootstrap/glyphicons-halflings-regular.eot     | Bin 0 -> 20335 bytes
+ .../bootstrap/glyphicons-halflings-regular.svg     | 229 +++++++++++++++++++++
+ .../bootstrap/glyphicons-halflings-regular.ttf     | Bin 0 -> 41280 bytes
+ .../bootstrap/glyphicons-halflings-regular.woff    | Bin 0 -> 23320 bytes
+ views/layout.jade                                  |   6 +-
+ 11 files changed, 384 insertions(+), 54 deletions(-)
+
+commit df4f72805f6442e7eaf0cfabb7819eea13ecec6c
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 19 10:24:55 2014 -0700
+
+    Implements edit <-> update (uses POST). Adds content (lorempixel)
+
+ routes/users.js        |  9 +++++++--
+ views/users/edit.jade  | 34 +++++++++++++++++++++++++++++++---
+ views/users/index.jade | 12 +++++++-----
+ views/users/show.jade  | 21 +++++++++++++++++----
+ 4 files changed, 62 insertions(+), 14 deletions(-)
+
+commit b997ed0fb65fa85c96e027fc078e9a82fcf40045
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 17 13:30:04 2014 -0700
+
+    Extracts Mongoose Model code into models.js module.
+
+ app.js          | 10 ----------
+ models.js       | 17 +++++++++++++++++
+ routes/users.js |  4 ++--
+ 3 files changed, 19 insertions(+), 12 deletions(-)
+
+commit 7f55a52d44e10aeab76307ff77114e6102b1dc5a
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 17 13:09:22 2014 -0700
+
+    Refactors Jade views. Much sexier!
+
+ routes/index.js        |  2 +-
+ views/index.jade       |  9 +++++++--
+ views/layout.jade      | 23 ++++++++++++-----------
+ views/users/index.jade |  4 ++--
+ views/users/new.jade   | 45 +++++++++++++++++++++++++++++----------------
+ views/users/show.jade  |  8 +++++---
+ 6 files changed, 56 insertions(+), 35 deletions(-)
+
+commit 5d2fad1e69bb7df53b24b7232a3ce01ff47ed9a4
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 17 10:38:52 2014 -0700
+
+    Views - Adds Bootstrap navbar. Updates users.show (show username...)
+
+ views/layout.jade     | 18 ++++++++++++------
+ views/users/show.jade |  4 ++--
+ 2 files changed, 14 insertions(+), 8 deletions(-)
+
+commit 6a4993731ecc953ec9d88130f48f87ca9d8e7f30
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Mon Nov 17 10:10:26 2014 -0700
+
+    Adds Bootstrap (SASS) w/ gulp-sass, livereload, etc... (npm, bower)
+
+ .gitignore                    |  2 ++
+ assets/styles/_bootstrap.scss | 50 +++++++++++++++++++++++++++++++++++++++++++
+ assets/styles/app.scss        |  1 +
+ bower.json                    | 19 ++++++++++++++++
+ gulpfile.js                   | 37 ++++++++++++++++++++++++++++++++
+ package.json                  |  6 ++++++
+ views/layout.jade             |  7 ++++--
+ 7 files changed, 120 insertions(+), 2 deletions(-)
+
+commit 9ae779d75b75c2fb2ef9a2632d00692b243c00be
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Fri Nov 14 12:57:59 2014 -0700
+
+    Defines User schema/model. routes/user uses User. Updates routes/views
+    
+    Updates userSchema, routes, and views (users.index and other RESTfuls)
+    - users.new form -> users.create saves User to DB
+    - users.index lists users by username
+    - Moves from users/{id} to users/@{username}
+        Example: "/users/@joeschmoe"
+
+ app.js                 |  9 +++++++++
+ routes/users.js        | 55 ++++++++++++++++++++++++++------------------------
+ views/users/index.jade |  3 ++-
+ views/users/new.jade   | 12 +++++++++--
+ views/users/show.jade  |  2 +-
+ 5 files changed, 51 insertions(+), 30 deletions(-)
+
+commit 8905c41dfd9ebde8d69b4482f62e151df4876038
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Fri Nov 14 09:52:01 2014 -0700
+
+    app.js/package.json - Connects to MongoDB (using config_private.js)
+    
+    - package.json - Adds "mongoose"
+
+ app.js       | 16 ++++++++++++++++
+ package.json | 11 ++++++-----
+ 2 files changed, 22 insertions(+), 5 deletions(-)
+
+commit 8a6764faa5154d973441cbdcc3343ae596db6f9b
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Fri Nov 14 12:38:40 2014 -0700
+
+    Adds gitignore - config_private.js and Adds EXAMPLE.config_private.js
+
+ .gitignore                | 1 +
+ EXAMPLE.config_private.js | 5 +++++
+ 2 files changed, 6 insertions(+)
+
+commit c47be8de6697cfeeb52bfeebc783cc9900b4223a
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 12 09:44:39 2014 -0700
+
+    1st Revision "/users/*" RESTful routes and views (.jade)
+    
+    - Adds views/users/*.jade, updates routes... adds form for new...
+    - Adds links between users RESTful views.....
+
+ routes/users.js        | 39 ++++++++++++++++++++++++++-------------
+ views/layout.jade      |  7 ++++++-
+ views/users/edit.jade  |  5 +++++
+ views/users/index.jade |  8 ++++++++
+ views/users/new.jade   | 12 ++++++++++++
+ views/users/show.jade  |  5 +++++
+ 6 files changed, 62 insertions(+), 14 deletions(-)
+
+commit 370f2d51d08683d99786fb03ac49d08d1ca223a8
+Author: Erik Aybar <erikthedeveloper@gmail.com>
+Date:   Wed Nov 12 09:04:26 2014 -0700
+
+    Initial commit - Express generator + Minor Modifications
+    
+    - Alters bin/www removes hardcoded reference to directory name?!
+
+ app.js                       | 60 ++++++++++++++++++++++++++++++++++++++++++++
+ bin/www                      |  9 +++++++
+ package.json                 | 17 +++++++++++++
+ public/stylesheets/style.css |  8 ++++++
+ routes/index.js              |  9 +++++++
+ routes/users.js              | 52 ++++++++++++++++++++++++++++++++++++++
+ views/error.jade             |  6 +++++
+ views/index.jade             |  5 ++++
+ views/layout.jade            |  7 ++++++
+ 9 files changed, 173 insertions(+)
+
